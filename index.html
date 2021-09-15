@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style> 
+			table{
+			  	margin: 15px;
+			  	border-collapse: collapse;
+			}
+			td{
+			  	border: 1px solid black;
+			  	padding: 0px;
+			  	width: 150px;
+			  	height: 75px;
+			}
+			tr{
+				height: 50px;
+				width: 400px;
+			}
+			div{
+				background-color: white;
+			  	border: 1px solid black;
+			  	margin-top: 10px;
+			  	margin-left: 10px;
+			  	justify-self: center;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div>
+			<table id="myTABLE">
+			  <tr>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+			  </tr>
+			  <tr/>
+			  <tr>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+			  </tr>
+			  <tr/>
+			  <tr>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+			  </tr>
+			  <tr/>
+			  <tr>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+			  </tr>			  
+			</table>
+		</div>
+		<script>
+			function sleep(ms) {
+    			return new Promise(resolve => setTimeout(resolve, ms));
+   			}
+			async function start() {
+				var flag=true;
+				var rowCount=document.getElementById("myTABLE").rows.length;
+				var cellCount=document.getElementById("myTABLE").rows[0].cells.length;
+				var color=["blue","green","red","yellow"];
+				for(var i=0;i<cellCount;i+=2){
+					for(var j=0;j<rowCount;j+=2){
+						if(flag)
+							document.getElementById("myTABLE").rows[j].cells.item(i).style.backgroundColor=color[j/2];
+						else
+							document.getElementById("myTABLE").rows[j].cells.item(i+1).style.backgroundColor=color[j/2];
+						flag=!flag;
+						await sleep(500);
+					}
+				}
+
+			}
+			function reset() {
+				var flag=true;
+				var rowCount=document.getElementById("myTABLE").rows.length;
+				var cellCount=document.getElementById("myTABLE").rows[0].cells.length;
+				for(var i=0;i<cellCount;i+=2){
+					for(var j=0;j<rowCount;j+=2){
+						if(flag)
+							document.getElementById("myTABLE").rows[j].cells.item(i).style.backgroundColor="white";
+						else
+							document.getElementById("myTABLE").rows[j].cells.item(i+1).style.backgroundColor="white";
+						flag=!flag;
+					}
+				}
+			}
+		</script>
+		<button type="button" style="color:white;background-color: green; margin-top: 20px; margin-left: 500px; height: 30px;width:100px" onclick="start()">Start</button>
+		<button type="button" style="color:white;background-color: green; margin-top: 20px; margin-left: 20px; height: 30px;width: 100px;" onclick="reset()">Reset</button>
+	</body>
+</html>
